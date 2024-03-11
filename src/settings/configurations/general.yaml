@@ -1,0 +1,55 @@
+# VectorStore settings
+vectorstore:
+  collection_name: embedding_data
+  chunk_size: 420
+  chunk_overlap: 35
+  metadata_field_names_source_reference: markdown_link
+  size: 1536
+  indexing_threshold: 20000
+  batch_size: 10000
+  with_payload: true
+  with_vectors: false
+  consistency: all
+  port: 443
+  timeout: 60.0
+  shard_number: 2
+ 
+# Memory settings
+memory:
+  store_k_messages: 5
+  capacity: 50000
+ 
+# Streamlit settings
+streamlit:
+  max_prompt_input_chars: 500
+ 
+# Retriever settings
+retrievers:
+  bm25:
+    k: 4
+    use_gpt_preprocessor: true
+  dense:
+    method: similarity_score_threshold
+    k: 4
+    threshold: 0.5
+  ensemble:
+    weighting: [0.35, 0.35, 0.3]
+    add_sim_ret: true
+    add_bm25_ret: true
+    add_mvec_qa_ret: true
+    add_mvec_sum_ret: false
+  reranker:
+    k: 3
+    threshold: 5
+    batch_size: 11
+  multi_vec:
+    k: 3
+    score_threshold: 0.5
+ 
+preprocessing:
+  max_chars_question: 505
+  suspicious_word_len: 40
+
+# model type to use
+models:
+  type: hf

@@ -1,0 +1,70 @@
+[tool.poetry]
+name = "general_purpose_llm_setup"
+version = "0.1.0"
+description = ""
+authors = ["mhattingpete <petersen2630@gmail.com>"]
+readme = "README.md"
+packages = [{include = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+ipython = "^8.22.1"
+ipykernel = "^6.29.2"
+requests = "^2.31.0"
+python-dotenv = "^1.0.1"
+transformers = "^4.38.1"
+jinja2 = "^3.1.3"
+langchain = "^0.1.9"
+text-generation = "^0.6.1"
+fastapi = "^0.110.0"
+uvicorn = {extras = ["standard"], version = "^0.27.1"}
+langchainhub = "^0.1.14"
+omegaconf = "^2.3.0"
+duckduckgo-search = "^4.5.0"
+streamlit = "^1.31.1"
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.3.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+skip-string-normalization = true
+line-length = 88
+
+[tool.ruff]
+# Same as Black.
+line-length = 88
+
+exclude = ["jupyter_notebook_config.py"]
+select = [
+    "E",  # pycodestyle errors (settings from FastAPI, thanks, @tiangolo!)
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "C",  # flake8-comprehensions
+    "B",  # flake8-bugbear
+    #"D",  # docstrings
+]
+ignore = [
+    "E501",  # line too long, handled by black
+    "C901",  # too complex
+]
+
+# Ruff autofix issues with the following unsafe rules
+unfixable = ["B", "SIM", "TRY", "RUF"]
+fixable = ["ALL"]
+fix = true
+
+
+[tool.ruff.isort]
+order-by-type = true
+relative-imports-order = "closest-to-furthest"
+extra-standard-library = ["typing"]
+section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
+known-first-party = []
+
+[tool.ruff.pydocstyle]
+convention = "google"
