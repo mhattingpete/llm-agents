@@ -1,0 +1,3 @@
+# Chat model settings
+openchat35:
+  temperature: 0.001
